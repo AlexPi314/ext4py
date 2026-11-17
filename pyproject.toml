@@ -1,0 +1,12 @@
+[project]
+name = "ext4py"
+version = "0.1.0"
+description = "Парсер образов EXT4 только на стандартной библиотеке Python"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+dependencies = []
+
+[project.scripts]
+ext4py = "ext4py.cli:main"

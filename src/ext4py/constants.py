@@ -1,0 +1,60 @@
+"""Сигнатуры, флаги и ограничения поддерживаемой раскладки EXT4.
+
+Префиксы разделяют поля суперблока и inode: одинаковое числовое
+значение в разных полях не означает одну и ту же возможность.
+"""
+
+# INCOMPAT задаёт раскладку; RECOVER дополнительно проверяется как состояние тома.
+INCOMPAT_FILETYPE = 0x2
+INCOMPAT_RECOVER = 0x4
+INCOMPAT_EXTENTS = 0x40
+INCOMPAT_64BIT = 0x80
+INCOMPAT_MMP = 0x100
+INCOMPAT_FLEX_BG = 0x200
+INCOMPAT_EA_INODE = 0x400
+INCOMPAT_CSUM_SEED = 0x2000
+INCOMPAT_LARGEDIR = 0x4000
+
+SUPPORTED_INCOMPAT = (
+    INCOMPAT_FILETYPE
+    | INCOMPAT_RECOVER
+    | INCOMPAT_EXTENTS
+    | INCOMPAT_64BIT
+    | INCOMPAT_MMP
+    | INCOMPAT_FLEX_BG
+    | INCOMPAT_EA_INODE
+    | INCOMPAT_CSUM_SEED
+    | INCOMPAT_LARGEDIR
+)
+
+# Признаки только для чтения также могут ограничивать возможности этого парсера.
+RO_COMPAT_BIGALLOC = 0x200
+RO_COMPAT_METADATA_CSUM = 0x400
+RO_COMPAT_ORPHAN_PRESENT = 0x10000
+
+# Флаги конкретного объекта не следует смешивать с флагами суперблока.
+INODE_COMPRESSED = 0x4
+INODE_DIRTY_COMPRESSED = 0x100
+INODE_COMPRESSED_BLOCKS = 0x200
+INODE_ENCRYPTED = 0x800
+INODE_EXTENTS = 0x80000
+INODE_INLINE_DATA = 0x10000000
+INODE_CASEFOLD = 0x40000000
+
+UNSUPPORTED_INODE_DATA = (
+    INODE_COMPRESSED
+    | INODE_DIRTY_COMPRESSED
+    | INODE_COMPRESSED_BLOCKS
+    | INODE_ENCRYPTED
+    | INODE_INLINE_DATA
+    | INODE_CASEFOLD
+)
+
+EXT4_MAGIC = 0xEF53
+EXTENT_MAGIC = 0xF30A
+MAX_EXTENT_DEPTH = 5
+UNWRITTEN_EXTENT_BASE = 32768
+ROOT_INODE = 2
+MAX_SYMLINKS = 40
+MAX_SYMLINK_SIZE = 4096
+IO_CHUNK_SIZE = 1024 * 1024

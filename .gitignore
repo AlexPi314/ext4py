@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+.venv/
+.coverage
+build/
+dist/
+*.egg-info/
+*.raw
+*.img
+*.qcow2
+*.vdi
+*.vmdk
+*.tar.gz
+
+.demo/
+
+# Временные файлы редакторов
+.~lock.*#
+~$*
